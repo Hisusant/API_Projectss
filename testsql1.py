@@ -50,8 +50,10 @@ def fetch():
     try:
         if request.method == 'POST':
             cursor.execute("select * from api_db.employ_details")
+            l=[]
             for i in cursor.fetchall():
-                return jsonify(str(i))
+                l.append(i)
+            return jsonify(str(l))
     except Exception as e:
         return jsonify(str(e))
 
