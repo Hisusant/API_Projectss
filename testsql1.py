@@ -45,6 +45,16 @@ def delete():
         except Exception as e:
             return jsonify(str(e))
 
+@app.route('/sqldb/fetch', methods = ['POST','GET'])
+def fetch():
+    try:
+        if request.method == 'POST':
+            cursor.execute("select * from api_db.employ_details")
+            for i in cursor.fetchall():
+                return jsonify(str(i))
+    except Exception as e:
+        return jsonify(str(e))
+
 if __name__ == '__main__':
     app.run(port=5002)
 
